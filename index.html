@@ -3,36 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japi - A Holiday Calendar | Alt Drishti</title>
+    <title>Alt Drishti | Simplifying Digital World</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 40px; background-color: #f0f2f5; color: #333; }
-        .card { background: white; max-width: 500px; margin: auto; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { color: #d32f2f; margin-bottom: 10px; }
-        .tagline { color: #666; font-style: italic; margin-bottom: 30px; }
-        .btn { display: inline-block; background-color: #00897b; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; transition: background 0.3s; }
-        .btn:hover { background-color: #00695c; }
-        .links { margin-top: 40px; font-size: 0.9em; border-top: 1px solid #eee; padding-top: 20px; }
-        .links a { color: #555; text-decoration: none; margin: 0 10px; }
-        .links a:hover { color: #000; text-decoration: underline; }
+        /* --- GLOBAL VARIABLES & THEME --- */
+        :root {
+            --primary: #00695c; /* Teal from Japi App */
+            --accent: #d32f2f;  /* Red from Holiday styling */
+            --dark: #121212;
+            --light: #f4f6f8;
+            --text-main: #333;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .logo-img {
+            height: 40px; /* Adjust based on your logo shape */
+            width: auto;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #004d40 0%, #00897b 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* --- PORTFOLIO GRID --- */
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        /* --- APP CARD DESIGN --- */
+        .app-showcase {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            display: flex;
+            flex-wrap: wrap; /* Makes it responsive */
+            transition: transform 0.3s ease;
+        }
+
+        .app-showcase:hover {
+            transform: translateY(-5px);
+        }
+
+        .app-image {
+            flex: 1;
+            min-width: 300px;
+            background-color: #e0f2f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .app-screenshot {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            /* Limits image size so it doesn't look huge */
+            max-height: 400px; 
+        }
+
+        .app-content {
+            flex: 1;
+            padding: 50px;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .app-tag {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .app-title {
+            font-size: 2.2rem;
+            margin: 0 0 20px 0;
+            color: var(--dark);
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            color: var(--text-light);
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .download-btn {
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            align-self: start;
+            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(0,137,123, 0.4);
+        }
+
+        .download-btn:hover {
+            background-color: #004d40;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 80px;
+            background: var(--dark);
+            color: #888;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+        
+        /* Mobile Tweaks */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .app-content { padding: 30px; }
+            .app-showcase { flex-direction: column; }
+            .download-btn { width: 100%; text-align: center; box-sizing: border-box; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Japi</h1>
-        <p class="tagline">The Ultimate Holiday Calendar for Assam</p>
-        
-        <p>Stay updated with local holidays, restricted holidays, and Assamese dates. Designed for simplicity and accuracy.</p>
-        <br>
-        
-        <a href="https://play.google.com/store/apps/details?id=com.manashsharma.calendar2026" class="btn">Download on Play Store</a>
-
-        <div class="links">
-            <p>Developed by <b>Alt Drishti</b></p>
-            <a href="privacy-policy.html">Privacy Policy</a> | 
-            <a href="mailto:altdrishti@gmail.com">Contact Support</a>
+    <nav>
+        <div class="logo-container">
+            <img src="logo.png" alt="Alt Drishti Logo" class="logo-img">
+            <span>Alt Drishti</span>
         </div>
-    </div>
+        <div>
+            <a href="mailto:altdrishti@gmail.com" style="text-decoration: none; color: var(--primary); font-weight: bold;">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Simplifying Digital World</h1>
+        <p>Creating intuitive, culturally rich applications for everyday life.</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Our Apps</h2>
+
+        <article class="app-showcase">
+            <div class="app-image">
+                <img src="japi_screen.png" alt="Japi App Interface" class="app-screenshot">
+            </div>
+
+            <div class="app-content">
+                <span class="app-tag">Productivity & Culture</span>
+                <h3 class="app-title">Japi - Assam Holiday Calendar</h3>
+                <p>
+                    The definitive holiday companion for Assam. We bridge the gap between official government schedules and traditional cultural timings. 
+                    Featuring a unique dual-calendar system that keeps you connected to your roots while organizing your professional life.
+                </p>
+
+                <ul class="features-list">
+                    <li><strong>Smart Holiday Filters:</strong> Distinguish instantly between Gazetted and Restricted holidays.</li>
+                    <li><strong>Cultural Integration:</strong> View Assamese dates (Tithi) alongside English dates.</li>
+                    <li><strong>Zero-Distraction Mode:</strong> Offline-first design with smart notifications that respect your sleep.</li>
+                </ul>
+
+                <a href="https://play.google.com/store/apps/details?id=com.manashsharma.calendar2026" class="download-btn" target="_blank">
+                    Download on Play Store
+                </a>
+            </div>
+        </article>
+
+        </div>
+
+    <footer>
+        <p>&copy; 2025 Alt Drishti. All Rights Reserved.</p>
+        <p>
+            <a href="https://docs.google.com/document/d/e/2PACX-1vTuW3VaI5NPxRAr0hPKoLE1X8fxG4AVj07z0IELt65DfLdsyAv0pRP4AZMSeQwo3cvaRDSLi2qNe-eR/pub" target="_blank">Privacy Policy</a>
+            |
+            <a href="mailto:altdrishti@gmail.com">Support</a>
+        </p>
+    </footer>
 
 </body>
 </html>
