@@ -47,7 +47,7 @@
         }
 
         .logo-img {
-            height: 40px; /* Adjust based on your logo shape */
+            height: 40px; 
             width: auto;
         }
 
@@ -91,7 +91,7 @@
             overflow: hidden;
             box-shadow: 0 15px 30px rgba(0,0,0,0.08);
             display: flex;
-            flex-wrap: wrap; /* Makes it responsive */
+            flex-wrap: wrap; 
             transition: transform 0.3s ease;
         }
 
@@ -114,7 +114,6 @@
             height: auto;
             border-radius: 12px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            /* Limits image size so it doesn't look huge */
             max-height: 400px; 
         }
 
@@ -152,15 +151,21 @@
         .features-list li {
             margin-bottom: 10px;
             display: flex;
-            align-items: center;
+            align-items: start;
         }
 
         .features-list li::before {
-            content: "✓";
+            content: "•";
             color: var(--primary);
             font-weight: bold;
             margin-right: 10px;
+            font-size: 1.2em;
+            line-height: 1;
         }
+
+        /* Special styling for the visual indicators in the list */
+        .indicator-red { color: #d32f2f; font-weight: bold; }
+        .indicator-blue { color: #1976D2; font-weight: bold; }
 
         .download-btn {
             background-color: var(--primary);
@@ -199,8 +204,7 @@
         footer a:hover {
             color: var(--primary);
         }
-        
-        /* Mobile Tweaks */
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .app-content { padding: 30px; }
@@ -236,16 +240,21 @@
 
             <div class="app-content">
                 <span class="app-tag">Productivity & Culture</span>
-                <h3 class="app-title">Japi - Assam Holiday Calendar</h3>
+                <h3 class="app-title">Japi - A Holiday Calendar</h3>
                 <p>
-                    The definitive holiday companion for Assam. We bridge the gap between official government schedules and traditional cultural timings. 
-                    Featuring a unique dual-calendar system that keeps you connected to your roots while organizing your professional life.
+                    JAPI is a simple, offline holiday calendar designed specifically for the people of Assam. 
+                    It provides a convenient way to view the holiday list based on the official Government notifications.
                 </p>
 
                 <ul class="features-list">
-                    <li><strong>Smart Holiday Filters:</strong> Distinguish instantly between Gazetted and Restricted holidays.</li>
-                    <li><strong>Cultural Integration:</strong> View Assamese dates (Tithi) alongside English dates.</li>
-                    <li><strong>Zero-Distraction Mode:</strong> Offline-first design with smart notifications that respect your sleep.</li>
+                    <li><strong>Complete Holiday List:</strong> Includes all major festivals and state holidays.</li>
+                    <li>
+                        <strong>Visual Indicators:</strong><br>
+                        <span class="indicator-red">🔴 Red Circle:</span> General Holidays<br>
+                        <span class="indicator-blue">🔵 Blue Text:</span> Restricted Holidays
+                    </li>
+                    <li><strong>Detailed View:</strong> Tap on any date to see the festival or occasion name.</li>
+                    <li><strong>Lightweight & Offline:</strong> Works perfectly without internet.</li>
                 </ul>
 
                 <a href="https://play.google.com/store/apps/details?id=com.manashsharma.calendar2026" class="download-btn" target="_blank">
@@ -254,7 +263,7 @@
             </div>
         </article>
 
-        </div>
+    </div>
 
     <footer>
         <p>&copy; 2025 Alt Drishti. All Rights Reserved.</p>
