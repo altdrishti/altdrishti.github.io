@@ -3,475 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alt Drishti | Premium Software Solutions</title>
+    <title>Alt Drishti Studios</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. MODERN VARIABLES --- */
+        /* --- 1. STUDIO THEME VARIABLES --- */
         :root {
-            /* Brand Colors */
-            --brand-dark: #0f172a;   /* Deep Navy for backgrounds */
-            --brand-primary: #00695c; /* Japi Teal */
-            --brand-accent: #e11d48;  /* Vibrant Red/Pink */
-            --brand-kids: #F59E0B;    /* Fun Orange for kids apps */
-            --brand-blue: #2563EB;    /* Professional Blue */
-
-            /* UI Colors */
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --bg-body: #f1f5f9;
-            --card-bg: #ffffff;
+            --bg-deep: #050505;       /* Pure Black */
+            --bg-panel: #121212;      /* Off Black */
+            --accent-gold: #FFD700;   /* Premium Gold */
+            --accent-teal: #00E5FF;   /* Cyber Teal */
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
             
-            /* Effects */
-            --glass-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --hover-lift: translateY(-5px);
+            --poster-ratio: 2 / 3;    /* Standard Movie Poster Ratio */
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* --- 2. BASE STYLES --- */
+        /* --- 2. GLOBAL RESET --- */
+        * { box-sizing: border-box; }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, .app-name {
-            font-family: 'Poppins', sans-serif;
+        h1, h2, h3 { font-family: 'Rajdhani', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- 3. CINEMATIC HERO SECTION --- */
+        .hero-section {
+            height: 100vh; /* Full Screen */
+            width: 100%;
+            background-image: url('hero_bg.png'); /* YOUR AI WALLPAPER */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
-        /* --- 3. ANIMATED NAV BAR --- */
+        /* Dark overlay to make text readable */
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.8) 80%, #050505 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .studio-title {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0;
+            background: linear-gradient(to right, #fff, #999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .studio-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-teal);
+            margin-top: 10px;
+            letter-spacing: 5px;
+            font-weight: 600;
+        }
+
+        /* --- 4. NAVIGATION (Floating Glass) --- */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--brand-dark);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-img { height: 45px; width: auto; }
-
-        .contact-pill {
-            background: var(--brand-dark);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            text-decoration: none;
+        .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; }
+        .nav-contact { 
+            border: 1px solid var(--accent-teal); 
+            color: var(--accent-teal); 
+            padding: 8px 25px; 
+            text-decoration: none; 
             font-weight: 600;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
+            text-transform: uppercase;
+            transition: 0.3s;
         }
+        .nav-contact:hover { background: var(--accent-teal); color: black; box-shadow: 0 0 15px var(--accent-teal); }
 
-        .contact-pill:hover {
-            background: var(--brand-primary);
-            box-shadow: 0 5px 15px rgba(0, 105, 92, 0.3);
-        }
-
-        /* --- 4. PRO HERO SECTION (Animated Gradient) --- */
-        .hero {
-            position: relative;
-            text-align: center;
-            padding: 120px 20px 100px;
-            color: white;
-            overflow: hidden;
-            background: linear-gradient(-45deg, #0f172a, #1e293b, #00695c, #0f172a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            letter-spacing: -1px;
-            background: -webkit-linear-gradient(#fff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 20px auto 0;
-        }
-
-        /* --- 5. MAIN CONTENT LAYOUT --- */
-        .container {
-            max-width: 1000px;
-            margin: -50px auto 100px; /* Overlap hero slightly */
-            padding: 0 20px;
+        /* --- 5. SECTION STYLING --- */
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 20px;
             position: relative;
             z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
         }
 
-        /* --- 6. MODERN APP CARD --- */
-        .app-card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            box-shadow: var(--glass-shadow);
-            padding: 0; /* Removing padding from parent */
-            display: flex;
-            flex-direction: column; /* Mobile first stack */
+        .section-header {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--accent-gold);
+            padding-left: 20px;
+        }
+
+        /* --- 6. THE POSTER GRID (Netflix/Steam Style) --- */
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .poster-card {
+            position: relative;
+            aspect-ratio: var(--poster-ratio);
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.03);
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: var(--transition);
+            background: #1a1a1a; /* Placeholder color if image fails */
         }
 
-        .app-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Desktop Grid Layout for Card */
-        @media (min-width: 900px) {
-            .app-card {
-                flex-direction: row;
-                padding: 40px;
-                gap: 50px;
-            }
-        }
-
-        /* Left Side: Icon & Branding */
-        .app-branding {
-            flex: 0 0 250px; /* Fixed width */
-            text-align: center;
-            padding: 40px 20px 0; /* Padding for mobile view */
-        }
-        
-        @media (min-width: 900px) { .app-branding { padding: 0; text-align: left; } }
-
-        .app-icon {
-            width: 160px;
-            height: 160px;
-            border-radius: 35px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+        /* The Image */
+        .poster-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .app-name {
-            font-size: 1.8rem;
-            color: var(--brand-dark);
-            margin: 0;
-            line-height: 1.2;
+        /* Hover Effect: Zoom Image */
+        .poster-card:hover .poster-img {
+            transform: scale(1.1);
+            filter: brightness(0.4); /* Darken image to read text */
         }
 
-        .app-tag {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 4px 12px;
-            background: #f1f5f9;
-            color: var(--text-muted);
-            border-radius: 6px;
-            font-size: 0.85rem;
+        /* The Content Overlay (Hidden by default) */
+        .poster-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        /* Hover Effect: Show Content */
+        .poster-card:hover .poster-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .app-title {
+            font-size: 2rem;
+            margin: 0 0 5px 0;
+            color: white;
+            text-shadow: 0 2px 5px black;
+        }
+
+        .app-genre {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        /* Right Side: Details */
-        .app-details {
-            flex: 1;
-            padding: 30px;
-        }
-        @media (min-width: 900px) { .app-details { padding: 0; } }
-
-        .description {
-            font-size: 1.05rem;
-            color: #475569;
-            margin-bottom: 25px;
-        }
-
-        /* Feature List with Checkmarks */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .app-desc {
             font-size: 0.95rem;
-            color: var(--text-main);
+            color: #ddd;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Limit text to 3 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .feature-item svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--brand-primary);
-            flex-shrink: 0;
-        }
-
-        /* Action Buttons */
-        .btn-container {
-            margin-bottom: 30px;
-        }
-
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 30px;
-            border-radius: 12px;
+        /* Custom Action Button */
+        .btn-action {
+            display: inline-block;
+            background: white;
+            color: black;
+            padding: 12px 30px;
+            font-weight: 800;
+            text-transform: uppercase;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.2s;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%); /* Sci-Fi Shape */
+            transition: 0.2s;
             border: none;
-            cursor: pointer;
+            font-size: 0.9rem;
         }
 
-        /* Green - Play Store */
-        .btn-playstore {
-            background-color: var(--brand-primary);
-            color: white;
-            box-shadow: 0 4px 12px rgba(0, 105, 92, 0.3);
-        }
-        .btn-playstore:hover { background-color: #004d40; }
-
-        /* Blue - Beta Access */
-        .btn-beta {
-            background-color: var(--brand-blue);
-            color: white;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        .btn-beta:hover { background-color: #1d4ed8; }
-
-        /* Grey - Disabled */
-        .btn-disabled {
-            background-color: #e2e8f0;
-            color: #94a3b8;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        /* Screenshots */
-        .screenshot-row {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            scrollbar-width: thin;
+        .btn-action:hover {
+            background: var(--accent-teal);
+            transform: scale(1.05);
         }
         
-        .screen-thumb {
-            height: 250px; /* Uniform height */
-            width: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        .screen-thumb:hover { transform: scale(1.02); }
+        .btn-beta { background: var(--accent-gold); }
+        .btn-disabled { background: #555; color: #888; cursor: not-allowed; }
 
         /* --- 7. FOOTER --- */
         footer {
-            background: var(--brand-dark);
-            color: #94a3b8;
+            border-top: 1px solid #333;
+            padding: 50px 20px;
             text-align: center;
-            padding: 60px 20px;
-            font-size: 0.9rem;
+            color: #666;
+            margin-top: 80px;
+            background: black;
         }
-        
-        footer a { color: white; text-decoration: none; margin: 0 10px; }
-        footer a:hover { color: var(--brand-primary); }
 
+        footer a { color: #888; text-decoration: none; margin: 0 15px; transition: 0.3s; }
+        footer a:hover { color: white; }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .studio-title { font-size: 3rem; }
+            .section-header { font-size: 2rem; }
+            
+            /* On mobile, show content always, no hover needed */
+            .poster-content {
+                transform: translateY(0);
+                opacity: 1;
+                background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 100%);
+            }
+            .app-desc { display: none; } /* Hide description on mobile to save space */
+            .poster-img { filter: brightness(0.7); }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-area">
-            <img src="logo.png" alt="Alt Drishti" class="logo-img">
-            <span>Alt Drishti</span>
-        </div>
-        <a href="mailto:altdrishti@gmail.com" class="contact-pill">Contact Us</a>
+        <a href="#" class="nav-logo">ALT DRISHTI</a>
+        <a href="mailto:altdrishti@gmail.com" class="nav-contact">Contact</a>
     </nav>
 
-    <header class="hero">
-        <h1>Building Digital Bridges</h1>
-        <p>We create intuitive, culturally rich, and educational applications that simplify your digital world.</p>
-    </header>
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="studio-title">ALT DRISHTI</h1>
+            <div class="studio-subtitle">DIGITAL EXPERIENCES</div>
+        </div>
+    </div>
 
-    <div class="container">
-
-        <article class="app-card" id="card-japi">
-            <div class="app-branding">
-                <img src="japi_icon.png" alt="Japi Icon" class="app-icon">
-                <h2 class="app-name">Japi</h2>
-                <span class="app-tag">Productivity</span>
-            </div>
-            <div class="app-details">
-                <p class="description">
-                    The ultimate offline holiday calendar designed specifically for the people of Assam. 
-                    Stay updated with official government notifications, festival details, and restricted holidays in a simple, visual format.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 100% Offline Access</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Official Govt List</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Red/Blue Indicators</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Lightweight App</div>
-                </div>
-                
-                <div class="btn-container">
-                    <a id="btn-japi" class="action-btn" target="_blank">Loading...</a>
-                </div>
-
-                <div class="screenshot-row">
-                    <img src="japi_screen1.png" class="screen-thumb">
-                    <img src="japi_screen2.png" class="screen-thumb">
+    <div class="section-container">
+        <h2 class="section-header" style="color: var(--accent-teal);">ORIGINAL GAMES</h2>
+        
+        <div class="poster-grid">
+            
+            <div class="poster-card">
+                <img src="poster_jungle.png" alt="Jungle Safari" class="poster-img">
+                <div class="poster-content">
+                    <span class="app-genre">Adventure / Education</span>
+                    <h3 class="app-title">Jungle Safari</h3>
+                    <p class="app-desc">Join Guglu in a stunning 3D world. Learn about animals, nature, and words in this interactive global adventure.</p>
+                    <a id="btn-jungle" class="btn-action">Loading...</a>
                 </div>
             </div>
-        </article>
 
-        <article class="app-card" id="card-jungle">
-            <div class="app-branding">
-                <img src="jungle_icon.png" alt="Jungle Safari Icon" class="app-icon">
-                <h2 class="app-name">Jungle Safari Global</h2>
-                <span class="app-tag" style="color: var(--brand-kids);">Kids Education</span>
-            </div>
-            <div class="app-details">
-                <p class="description">
-                    Join <strong>Guglu</strong> on an educational adventure! 
-                    A fun, interactive way for children to explore animals and nature while building essential vocabulary and cognitive skills.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Interactive Characters</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Real Animal Sounds</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Safe for Kids</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Fun Animations</div>
-                </div>
-
-                <div class="btn-container">
-                    <a id="btn-jungle" class="action-btn" target="_blank">Loading...</a>
-                </div>
-
-                <div class="screenshot-row">
-                    <img src="jungle_screen1.png" class="screen-thumb">
-                    <img src="jungle_screen2.png" class="screen-thumb">
+            <div class="poster-card">
+                <img src="poster_numbers.png" alt="Learning Numbers" class="poster-img">
+                <div class="poster-content">
+                    <span class="app-genre">Early Math</span>
+                    <h3 class="app-title">Learning Numbers</h3>
+                    <p class="app-desc">A magical journey through mathematics. Visual counting, quizzes, and audio guides for early learners.</p>
+                    <a id="btn-numbers" class="btn-action">Loading...</a>
                 </div>
             </div>
-        </article>
 
-        <article class="app-card" id="card-numbers">
-            <div class="app-branding">
-                <img src="numbers_icon.png" alt="Numbers Icon" class="app-icon">
-                <h2 class="app-name">Learning Numbers</h2>
-                <span class="app-tag" style="color: var(--brand-kids);">Early Math</span>
-            </div>
-            <div class="app-details">
-                <p class="description">
-                    Build a strong foundation in mathematics. Designed for toddlers and preschoolers to recognize, 
-                    count, and understand numbers through engaging visuals and audio cues.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Visual Counting</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Audio Pronunciation</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Quiz Mode</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Parent Controls</div>
-                </div>
-
-                <div class="btn-container">
-                    <a id="btn-numbers" class="action-btn" target="_blank">Loading...</a>
-                </div>
-
-                <div class="screenshot-row">
-                    <img src="numbers_screen1.png" class="screen-thumb">
-                    <img src="numbers_screen2.png" class="screen-thumb">
+            <div class="poster-card">
+                <img src="poster_alpha.png" alt="Alphabets" class="poster-img">
+                <div class="poster-content">
+                    <span class="app-genre">Literacy</span>
+                    <h3 class="app-title">Learning Alphabets</h3>
+                    <p class="app-desc">Master the ABCs in a colorful playground of letters. Phonics support and interactive touch learning.</p>
+                    <a id="btn-alpha" class="btn-action">Loading...</a>
                 </div>
             </div>
-        </article>
 
-        <article class="app-card" id="card-alpha">
-            <div class="app-branding">
-                <img src="alpha_icon.png" alt="Alpha Icon" class="app-icon">
-                <h2 class="app-name">Learning Alphabets</h2>
-                <span class="app-tag" style="color: var(--brand-kids);">Literacy</span>
-            </div>
-            <div class="app-details">
-                <p class="description">
-                    Master the A-B-Cs with ease! A colorful and interactive tool that helps children associate letters 
-                    with objects and sounds, making reading a natural next step.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Phonics Support</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> A to Z Imagery</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Touch Interaction</div>
-                </div>
+        </div>
+    </div>
 
-                <div class="btn-container">
-                    <a id="btn-alpha" class="action-btn" target="_blank">Loading...</a>
-                </div>
-
-                <div class="screenshot-row">
-                    <img src="alpha_screen1.png" class="screen-thumb">
-                    <img src="alpha_screen2.png" class="screen-thumb">
+    <div class="section-container">
+        <h2 class="section-header" style="color: var(--accent-gold); border-color: var(--accent-teal);">ESSENTIAL TOOLS</h2>
+        
+        <div class="poster-grid">
+            
+            <div class="poster-card">
+                <img src="poster_japi.png" alt="Japi -Assam Holiday Calendar" class="poster-img">
+                <div class="poster-content">
+                    <span class="app-genre">Productivity</span>
+                    <h3 class="app-title">Japi Calendar</h3>
+                    <p class="app-desc">The definitive offline holiday calendar for Assam. Official notifications, visual indicators, and cultural insights.</p>
+                    <a id="btn-japi" class="btn-action">Loading...</a>
                 </div>
             </div>
-        </article>
 
-         <article class="app-card" id="card-draft">
-            <div class="app-branding">
-                <img src="draft_icon.png" alt="Draft Icon" class="app-icon">
-                <h2 class="app-name">FormalDraft</h2>
-                <span class="app-tag" style="color: var(--brand-blue);">Business Utility</span>
-            </div>
-            <div class="app-details">
-                <p class="description">
-                    Simplify your professional communication. Create polished, formal letters  
-                    in seconds using smart templates and customization tools.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Instant Templates</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Export to PDF</div>
-                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Email Integration</div>
-                </div>
-
-                <div class="btn-container">
-                    <a id="btn-draft" class="action-btn" target="_blank">Loading...</a>
-                </div>
-
-                <div class="screenshot-row">
-                    <img src="draft_screen1.png" class="screen-thumb">
-                    <img src="draft_screen2.png" class="screen-thumb">
+            <div class="poster-card">
+                <img src="poster_draft.png" alt="FormalDraft" class="poster-img">
+                <div class="poster-content">
+                    <span class="app-genre">Business</span>
+                    <h3 class="app-title">FormalDraft</h3>
+                    <p class="app-desc">Professional communication simplified. Create polished letters and emails instantly with smart templates.</p>
+                    <a id="btn-draft" class="btn-action">Loading...</a>
                 </div>
             </div>
-        </article>
 
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Alt Drishti. All Rights Reserved.</p>
+        <p>&copy; 2025 Alt Drishti Studios. All Rights Reserved.</p>
         <p>
             <a href="https://docs.google.com/document/d/e/2PACX-1vTuW3VaI5NPxRAr0hPKoLE1X8fxG4AVj07z0IELt65DfLdsyAv0pRP4AZMSeQwo3cvaRDSLi2qNe-eR/pub" target="_blank">Privacy Policy</a>
             | 
@@ -480,77 +355,60 @@
     </footer>
 
     <script>
-        // --- 1. CONFIGURATION AREA: PASTE YOUR LINKS HERE ---
-        // If a Play Store link is ready, paste it inside the quotes "".
-        // If it's NOT ready, leave it empty "".
-        // If you want testers, set needsTesters to true.
-
+        // --- CONFIGURATION ---
+        // Edit your links here. If a link is empty "", the button becomes "Coming Soon" or "Beta Access".
         const appsConfig = {
-            japi: {
-                playStoreLink: "https://play.google.com/store/apps/details?id=com.manashsharma.calendar2026",
-                needsTesters: false, 
-                appName: "Japi Calendar"
-            },
             jungle: {
-                // Assuming this is live now based on your update. 
-                // REPLACE THIS LINK with the real one.
-                playStoreLink: "https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME_HERE", 
-                needsTesters: false, 
-                appName: "Jungle Safari Global"
+                link: "https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME", // REPLACE THIS
+                status: "live", // Options: 'live', 'beta', 'soon'
+                name: "Jungle Safari"
             },
             numbers: {
-                playStoreLink: "", // Not live yet
-                needsTesters: true, // We want testers!
-                appName: "Learning Numbers"
+                link: "", 
+                status: "beta", // Closed Testing
+                name: "Learning Numbers"
             },
             alpha: {
-                playStoreLink: "", // Not live yet
-                needsTesters: true, // We want testers!
-                appName: "Learning Alphabets"
+                link: "", 
+                status: "beta",
+                name: "Learning Alphabets"
+            },
+            japi: {
+                link: "https://play.google.com/store/apps/details?id=com.manashsharma.calendar2026",
+                status: "live",
+                name: "Japi Calendar"
             },
             draft: {
-                playStoreLink: "", 
-                needsTesters: true, // Draft phase
-                appName: "FormalDraft"
+                link: "",
+                status: "beta",
+                name: "FormalDraft"
             }
         };
 
-        // --- 2. LOGIC ENGINE (DO NOT TOUCH BELOW THIS LINE) ---
-        function setupButton(btnId, config) {
-            const btn = document.getElementById(btnId);
-            
-            if (config.playStoreLink && config.playStoreLink.length > 5) {
-                // Scenario A: App is LIVE
-                btn.textContent = "Download on Play Store";
-                btn.href = config.playStoreLink;
-                btn.className = "action-btn btn-playstore";
-            } 
-            else if (config.needsTesters) {
-                // Scenario B: Needs Closed Testers
-                btn.textContent = "Request Beta Access";
-                btn.className = "action-btn btn-beta";
-                // Create mailto link
-                const subject = encodeURIComponent("Request to be closed tester");
-                const body = encodeURIComponent(`I would like to be a closed tester for your App ${config.appName}.`);
-                btn.href = `mailto:altdrishti@gmail.com?subject=${subject}&body=${body}`;
-            } 
-            else {
-                // Scenario C: Just Coming Soon
-                btn.textContent = "Coming Soon";
-                btn.className = "action-btn btn-disabled";
-                btn.removeAttribute("href");
-            }
+        // --- ENGINE ---
+        function initButtons() {
+            Object.keys(appsConfig).forEach(key => {
+                const config = appsConfig[key];
+                const btn = document.getElementById(`btn-${key}`);
+                
+                if (config.status === "live") {
+                    btn.textContent = "GET IT ON PLAY STORE";
+                    btn.href = config.link;
+                    btn.target = "_blank";
+                } else if (config.status === "beta") {
+                    btn.textContent = "REQUEST BETA ACCESS";
+                    btn.classList.add("btn-beta");
+                    const subject = encodeURIComponent("Request Beta Access");
+                    const body = encodeURIComponent(`I want to test ${config.name}.`);
+                    btn.href = `mailto:altdrishti@gmail.com?subject=${subject}&body=${body}`;
+                } else {
+                    btn.textContent = "COMING SOON";
+                    btn.classList.add("btn-disabled");
+                }
+            });
         }
 
-        // Run the setup for all apps
-        window.onload = function() {
-            setupButton("btn-japi", appsConfig.japi);
-            setupButton("btn-jungle", appsConfig.jungle);
-            setupButton("btn-numbers", appsConfig.numbers);
-            setupButton("btn-alpha", appsConfig.alpha);
-            setupButton("btn-draft", appsConfig.draft);
-        };
+        window.onload = initButtons;
     </script>
-
 </body>
 </html>
