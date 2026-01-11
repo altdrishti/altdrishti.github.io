@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alt Drishti Studios</title>
+    <title>ALT DRISHTI STUDIOS</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +33,7 @@
             color: var(--text-white);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent; /* Removes blue tap box on Android */
         }
 
         h1, h2, h3 { font-family: 'Rajdhani', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
@@ -40,6 +41,7 @@
         /* --- 3. CINEMATIC HERO SECTION --- */
         .hero-section {
             height: 100vh; /* Full Screen */
+            min-height: 500px; /* Prevent squishing on landscape mobile */
             width: 100%;
             background-image: url('hero_bg.png'); /* YOUR AI WALLPAPER */
             background-size: cover;
@@ -68,7 +70,7 @@
         }
 
         .studio-title {
-            font-size: 5rem;
+            font-size: 5rem; /* Large Desktop Size */
             font-weight: 800;
             line-height: 1;
             margin: 0;
@@ -96,10 +98,11 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            transition: padding 0.3s;
         }
 
-        .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; }
+        .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; text-shadow: 0 2px 4px black; }
         .nav-contact { 
             border: 1px solid var(--accent-teal); 
             color: var(--accent-teal); 
@@ -109,6 +112,8 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             transition: 0.3s;
+            background: rgba(0,0,0,0.5); /* Slight BG for contrast */
+            backdrop-filter: blur(5px);
         }
         .nav-contact:hover { background: var(--accent-teal); color: black; box-shadow: 0 0 15px var(--accent-teal); }
 
@@ -128,9 +133,10 @@
             padding-left: 20px;
         }
 
-        /* --- 6. THE POSTER GRID (Netflix/Steam Style) --- */
+        /* --- 6. THE POSTER GRID --- */
         .poster-grid {
             display: grid;
+            /* Adaptive Grid: Fits as many cards as possible, minimum 300px wide */
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
@@ -143,7 +149,7 @@
             cursor: pointer;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             transition: var(--transition);
-            background: #1a1a1a; /* Placeholder color if image fails */
+            background: #1a1a1a; 
         }
 
         /* The Image */
@@ -154,13 +160,19 @@
             transition: transform 0.6s ease;
         }
 
-        /* Hover Effect: Zoom Image */
-        .poster-card:hover .poster-img {
-            transform: scale(1.1);
-            filter: brightness(0.4); /* Darken image to read text */
+        /* Desktop Hover Effect */
+        @media (min-width: 769px) {
+            .poster-card:hover .poster-img {
+                transform: scale(1.1);
+                filter: brightness(0.4);
+            }
+            .poster-card:hover .poster-content {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        /* The Content Overlay (Hidden by default) */
+        /* The Content Overlay */
         .poster-content {
             position: absolute;
             bottom: 0;
@@ -168,15 +180,16 @@
             width: 100%;
             padding: 30px;
             background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
-            transform: translateY(20px);
-            opacity: 0;
             transition: var(--transition);
+            z-index: 5;
         }
 
-        /* Hover Effect: Show Content */
-        .poster-card:hover .poster-content {
-            transform: translateY(0);
-            opacity: 1;
+        /* Desktop: Hide content by default */
+        @media (min-width: 769px) {
+            .poster-content {
+                transform: translateY(20px);
+                opacity: 0;
+            }
         }
 
         .app-title {
@@ -201,7 +214,7 @@
             margin-bottom: 20px;
             line-height: 1.4;
             display: -webkit-box;
-            -webkit-line-clamp: 3; /* Limit text to 3 lines */
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -215,7 +228,7 @@
             font-weight: 800;
             text-transform: uppercase;
             text-decoration: none;
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%); /* Sci-Fi Shape */
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
             transition: 0.2s;
             border: none;
             font-size: 0.9rem;
@@ -248,33 +261,64 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Mobile Adjustments */
+        /* --- 8. MOBILE RESPONSIVE TWEAKS --- */
         @media (max-width: 768px) {
-            .studio-title { font-size: 3rem; }
-            .section-header { font-size: 2rem; }
+            /* Navbar adjustment */
+            nav { padding: 15px 20px; background: rgba(0,0,0,0.8); }
             
-            /* On mobile, show content always, no hover needed */
+            /* Text sizing */
+            .studio-title { font-size: 2.8rem; letter-spacing: -1px; }
+            .studio-subtitle { font-size: 1rem; letter-spacing: 3px; }
+            .section-header { font-size: 2rem; margin-bottom: 30px; }
+            
+            /* Grid Logic for Mobile: 1 Column usually, 2 on larger phones */
+            .poster-grid { 
+                gap: 40px; 
+                grid-template-columns: 1fr; /* Force 1 column for big impact */
+                padding: 0 10px; /* Side spacing */
+            }
+
+            /* The Mobile "Always On" Card Style */
+            .poster-card {
+                /* Make it look like a finished card, no hover needed */
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
             .poster-content {
                 transform: translateY(0);
                 opacity: 1;
-                background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 100%);
+                background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.7) 50%, transparent 100%);
+                padding: 25px;
             }
-            .app-desc { display: none; } /* Hide description on mobile to save space */
-            .poster-img { filter: brightness(0.7); }
+
+            .poster-img {
+                /* Darken slightly so white text is always readable */
+                filter: brightness(0.65);
+            }
+            
+            /* Smaller text on mobile cards */
+            .app-title { font-size: 1.8rem; }
+            .app-desc { font-size: 0.9rem; -webkit-line-clamp: 2; margin-bottom: 15px; }
+            
+            .btn-action {
+                width: 100%; /* Full width button on mobile */
+                text-align: center;
+                padding: 14px 0;
+            }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="nav-logo">ALT DRISHTI</a>
+        <a href="#" class="nav-logo">ALT DRISHTI STUDIOS</a>
         <a href="mailto:altdrishti@gmail.com" class="nav-contact">Contact</a>
     </nav>
 
     <div class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="studio-title">ALT DRISHTI</h1>
+            <h1 class="studio-title">ALT DRISHTI STUDIOS</h1>
             <div class="studio-subtitle">DIGITAL EXPERIENCES</div>
         </div>
     </div>
